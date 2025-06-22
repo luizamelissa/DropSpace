@@ -38,4 +38,11 @@ public class ProductController {
     public List<Product> listar() {
         return service.listar();
     }
+    
+
+    @GetMapping("/loja/{storeId}")
+public ResponseEntity<List<Product>> listarPorLoja(@PathVariable Long storeId) {
+    List<Product> produtos = service.listarPorLoja(storeId);
+    return ResponseEntity.ok(produtos);
+}
 }

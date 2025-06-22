@@ -29,7 +29,11 @@ public class ProductService {
         return repo.save(product);
     }
 
-    public List<Product> listar() {
-        return repo.findAll();
+    public List<Product> listarPorLoja(Long storeId) {
+        return repo.findByStoreId(storeId);
     }
+
+    public List<Product> listar() {
+    return repo.findAll();
+}
 }
