@@ -24,7 +24,7 @@ public class Product {
     private int stock;
 
     @ManyToOne
-    @JoinColumn(name = "supplier_id")
+    @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
     
 }
