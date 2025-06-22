@@ -24,4 +24,7 @@ public class User {
 
     private String password;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Store store;
+
 }

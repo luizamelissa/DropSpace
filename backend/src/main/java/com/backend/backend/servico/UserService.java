@@ -5,6 +5,7 @@ import com.backend.backend.repositorio.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,6 +22,10 @@ public class UserService {
 
     public List<User> listar() {
         return repo.findAll();
+    }
+
+    public Optional<User> buscarPorEmail(String email) {
+        return repo.findByEmail(email);
     }
 
 }
