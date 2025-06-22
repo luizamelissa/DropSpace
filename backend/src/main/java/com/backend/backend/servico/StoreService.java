@@ -14,11 +14,11 @@ public class StoreService {
         this.repo = repo;
     }
 
-    public Store salvar(Store store) {
-        return repo.save(store);
+    public Store salvar(Store loja) {
+        return repo.save(loja);
     }
 
-    public List<Store> listarTodos() {
+    public List<Store> listar() {
         return repo.findAll();
     }
 }

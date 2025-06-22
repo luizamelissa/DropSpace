@@ -17,13 +17,13 @@ public class StoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Store> criar(@RequestBody Store store) {
-        Store salvo = service.salvar(store);
+    public ResponseEntity<Store> criar(@RequestBody Store loja) {
+        Store salvo = service.salvar(loja);
         return ResponseEntity.ok(salvo);
     }
 
     @GetMapping
     public List<Store> listar() {
-        return service.listarTodos();
+        return service.listar();
     }
 }
