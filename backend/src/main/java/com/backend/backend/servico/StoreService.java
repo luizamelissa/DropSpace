@@ -14,8 +14,8 @@ public class StoreService {
         this.repo = repo;
     }
 
-    public Store salvar(Store loja) {
-        return repo.save(loja);
+    public Store salvar(Store store) {
+        return repo.save(store);
     }
 
     public List<Store> listar() {

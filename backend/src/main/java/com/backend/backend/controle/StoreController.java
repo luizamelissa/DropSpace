@@ -17,8 +17,8 @@ public class StoreController {
     }
 
     @PostMapping
-    public ResponseEntity<Store> criar(@RequestBody Store loja) {
-        Store salvo = service.salvar(loja);
+    public ResponseEntity<Store> criar(@RequestBody Store store) {
+        Store salvo = service.salvar(store);
         return ResponseEntity.ok(salvo);
     }
 

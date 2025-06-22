@@ -3,6 +3,8 @@ package com.backend.backend.modelo;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,4 +21,8 @@ public class Store {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "store")
+    private List<Product> products;
+
 }

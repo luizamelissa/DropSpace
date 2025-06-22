@@ -1,8 +1,8 @@
 package com.backend.backend.controle;
 
 import com.backend.backend.modelo.Product;
+import com.backend.backend.modelo.ProductRequest;
 import com.backend.backend.servico.ProductService;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +19,23 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> criar(@RequestBody Product produto) {
+    public ResponseEntity<?> criar(@RequestBody ProductRequest request) {
         try {
-            Product salvo = service.salvar(produto);
+            Product product = new Product();
+            product.setName(request.getName());
+            product.setDescription(request.getDescription());
+            product.setPrice(request.getPrice());
+            product.setStock(request.getStock());
+
+            Product salvo = service.salvar(product, request.getStoreId());
             return ResponseEntity.ok(salvo);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Erro ao cadastrar produto: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping
     public List<Product> listar() {
-        return service.listarTodos();
+        return service.listar();
     }
 }
