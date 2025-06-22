@@ -26,8 +26,8 @@ public class ProductController {
             product.setDescription(request.getDescription());
             product.setPrice(request.getPrice());
             product.setStock(request.getStock());
+            Product salvo = service.salvar(product, request.getStoreId(), request.getCategoryId());
 
-            Product salvo = service.salvar(product, request.getStoreId());
             return ResponseEntity.ok(salvo);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

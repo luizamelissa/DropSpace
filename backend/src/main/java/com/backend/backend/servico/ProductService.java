@@ -1,31 +1,37 @@
 package com.backend.backend.servico;
 
+import com.backend.backend.modelo.Category;
 import com.backend.backend.modelo.Product;
+import com.backend.backend.modelo.Store;
+import com.backend.backend.repositorio.CategoryRepository;
 import com.backend.backend.repositorio.ProductRepository;
 import com.backend.backend.repositorio.StoreRepository;
-import com.backend.backend.modelo.Store;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
 
     private final ProductRepository repo;
     private final StoreRepository storeRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository repo, StoreRepository storeRepository) {
+    public ProductService(ProductRepository repo, StoreRepository storeRepository, CategoryRepository categoryRepository) {
         this.repo = repo;
         this.storeRepository = storeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
-    public Product salvar(Product product, Long storeId) {
-        Optional<Store> optionalStore = storeRepository.findById(storeId);
-        if (optionalStore.isEmpty()) {
-            throw new IllegalArgumentException("Loja com ID " + storeId + " não encontrada.");
-        }
-        product.setStore(optionalStore.get());
+    public Product salvar(Product product, Long storeId, Long categoryId) {
+        Store store = storeRepository.findById(storeId)
+            .orElseThrow(() -> new IllegalArgumentException("Loja não encontrada"));
+        product.setStore(store);
+
+        Category category = categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada"));
+        product.setCategory(category);
+
         return repo.save(product);
     }
 
@@ -34,6 +40,6 @@ public class ProductService {
     }
 
     public List<Product> listar() {
-    return repo.findAll();
-}
+        return repo.findAll();
+    }
 }
