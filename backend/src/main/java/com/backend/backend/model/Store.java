@@ -22,7 +22,7 @@ public class Store {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "store")
-    private List<Product> products;
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+private List<Product> products;
 
 }

@@ -1,9 +1,7 @@
 package com.backend.backend.controller;
 
 import com.backend.backend.model.Product;
-import com.backend.backend.model.ProductRequest;
 import com.backend.backend.servico.ProductService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,30 +17,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> criar(@RequestBody ProductRequest request) {
-        try {
-            Product product = new Product();
-            product.setName(request.getName());
-            product.setDescription(request.getDescription());
-            product.setPrice(request.getPrice());
-            product.setStock(request.getStock());
-            Product salvo = service.salvar(product, request.getStoreId(), request.getCategoryId());
-
-            return ResponseEntity.ok(salvo);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public Product criar(@RequestBody Product produto) {
+        return service.salvar(produto);
     }
 
     @GetMapping
     public List<Product> listar() {
         return service.listar();
     }
-    
-
-    @GetMapping("/loja/{storeId}")
-public ResponseEntity<List<Product>> listarPorLoja(@PathVariable Long storeId) {
-    List<Product> produtos = service.listarPorLoja(storeId);
-    return ResponseEntity.ok(produtos);
-}
 }

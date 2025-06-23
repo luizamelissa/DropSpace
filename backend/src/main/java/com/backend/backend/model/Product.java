@@ -3,8 +3,6 @@ package com.backend.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,16 +17,13 @@ public class Product {
 
     private String description;
 
-    private BigDecimal price;
+    private double price;
 
     private int stock;
 
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
+    private Category category;
 
     @ManyToOne
-@JoinColumn(name = "category_id")
-private Category category;
-
+    private Store store;
 }
