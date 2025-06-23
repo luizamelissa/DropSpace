@@ -1,7 +1,7 @@
 package com.backend.backend.config;
 
+import com.backend.backend.servico.MyUserDetailsService.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -14,8 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    private final MyUserDetailsService userDetailsService;
+
+    public SecurityConfig(MyUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -23,7 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**", "/usuarios/**").permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic();
@@ -33,7 +34,7 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService((UserDetailsService) userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }

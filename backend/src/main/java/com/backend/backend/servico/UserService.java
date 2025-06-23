@@ -5,32 +5,26 @@ import com.backend.backend.repository.UserRepository;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private final UserRepository repo;
+    @Autowired
+    private UserRepository repository;
 
-    public UserService(UserRepository repo) {
-        this.repo = repo;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public User cadastrar(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("USER");
+        return repository.save(user);
     }
 
-    public User salvar(User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
-        return repo.save(user);
+    public List<User> listarTodos() {
+        return repository.findAll();
     }
-    
-
-    public Optional<User> buscarPorEmail(String email) {
-        return repo.findByEmail(email);
-    }
-
-    public List<User> listarUsuarios() {
-        return repo.findAll();
-    }
-
 }

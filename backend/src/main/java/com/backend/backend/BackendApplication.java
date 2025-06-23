@@ -20,17 +20,24 @@ public class BackendApplication {
 	@Bean
 public CommandLineRunner run(UserRepository userRepository, BCryptPasswordEncoder encoder) {
     return args -> {
-        // Verifica se o usuário já existe para evitar duplicidade
-        if (userRepository.findByEmail("teste@teste.com").isEmpty()) {
-            User user = new User();
-            user.setName("Usuário Teste");
-            user.setEmail("teste@teste.com");
-            user.setPassword(encoder.encode("123456")); // senha criptografada
-            user.setRole("USER");
-            userRepository.save(user);
-            System.out.println("Usuário de teste criado: teste@teste.com / 123456");
+        try {
+            userRepository.findByEmail("teste@teste.com").ifPresentOrElse(
+                user -> System.out.println("Usuário de teste já existe."),
+                () -> {
+                    User user = new User();
+                    user.setName("Usuário Teste");
+                    user.setEmail("teste@teste.com");
+                    user.setPassword(encoder.encode("123456"));
+                    user.setRole("USER");
+                    userRepository.save(user);
+                    System.out.println("Usuário de teste criado com sucesso.");
+                }
+            );
+        } catch (Exception e) {
+            System.out.println("Erro ao criar usuário de teste: " + e.getMessage());
         }
     };
 }
+
 
 }
