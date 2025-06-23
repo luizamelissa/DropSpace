@@ -50,4 +50,16 @@ public List<Product> listarPorLoja(Long storeId) {
     return repo.findByStore(store);
 }
 
+public List<Product> filtrar(String nome, Long categoriaId) {
+    if (nome != null && categoriaId != null) {
+        return repo.findByNameContainingIgnoreCaseAndCategory_Id(nome, categoriaId);
+    } else if (nome != null) {
+        return repo.findByNameContainingIgnoreCase(nome);
+    } else if (categoriaId != null) {
+        return repo.findByCategory_Id(categoriaId);
+    } else {
+        return repo.findAll();
+    }
+}
+
 }

@@ -44,4 +44,11 @@ public List<Product> listarPorLoja(@PathVariable Long storeId) {
     return service.listarPorLoja(storeId);
 }
 
+@GetMapping("/search")
+public List<Product> pesquisar(
+        @RequestParam(required = false) String nome,
+        @RequestParam(required = false) Long categoria) {
+    return service.filtrar(nome, categoria);
+}
+
 }
