@@ -20,12 +20,12 @@ public class UserService {
         return repo.save(user);
     }
 
-    public List<User> listar() {
-        return repo.findAll();
-    }
-
     public Optional<User> buscarPorEmail(String email) {
         return repo.findByEmail(email);
+    }
+
+    public List<User> listarUsuarios() {
+        return repo.findAll();
     }
 
 }

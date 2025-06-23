@@ -19,19 +19,18 @@ public class UserController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<User> listar() {
-        return service.listar();
-    }
-
-    @PostMapping
-public ResponseEntity<?> cadastrar(@RequestBody User user) {
-    Optional<User> existente = service.buscarPorEmail(user.getEmail());
-    if (existente.isPresent()) {
-        return ResponseEntity.badRequest().body("Email já cadastrado.");
-    }
-    User salvo = service.salvar(user);
-    return ResponseEntity.ok(salvo);
+    @GetMapping("/usuarios")
+public List<User> listar() {
+    return service.listarUsuarios();
 }
 
+    @PostMapping
+    public ResponseEntity<?> cadastrar(@RequestBody User user) {
+        Optional<User> existente = service.buscarPorEmail(user.getEmail());
+        if (existente.isPresent()) {
+            return ResponseEntity.badRequest().body("Email já cadastrado.");
+        }
+        User salvo = service.salvar(user);
+        return ResponseEntity.ok(salvo);
+    }
 }
