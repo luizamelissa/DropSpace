@@ -1,7 +1,8 @@
 package com.backend.backend.servico;
 
-import com.backend.backend.modelo.Category;
-import com.backend.backend.repositorio.CategoryRepository;
+import com.backend.backend.model.Category;
+import com.backend.backend.repository.CategoryRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

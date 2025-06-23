@@ -1,7 +1,8 @@
 package com.backend.backend.servico;
 
-import com.backend.backend.modelo.Store;
-import com.backend.backend.repositorio.StoreRepository;
+import com.backend.backend.model.Store;
+import com.backend.backend.repository.StoreRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,8 +1,10 @@
-package com.backend.backend.repositorio;
+package com.backend.backend.repository;
 
 import java.util.List;
-import com.backend.backend.modelo.Product;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.backend.backend.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByStoreId(Long storeId);

@@ -1,6 +1,6 @@
-package com.backend.backend.controle;
+package com.backend.backend.controller;
 
-import com.backend.backend.modelo.User;
+import com.backend.backend.model.User;
 import com.backend.backend.servico.UserService;
 
 import org.springframework.http.ResponseEntity;

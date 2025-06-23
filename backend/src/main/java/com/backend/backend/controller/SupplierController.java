@@ -1,6 +1,6 @@
-package com.backend.backend.controle;
+package com.backend.backend.controller;
 
-import com.backend.backend.modelo.Supplier;
+import com.backend.backend.model.Supplier;
 import com.backend.backend.servico.SupplierService;
 import org.springframework.web.bind.annotation.*;
 

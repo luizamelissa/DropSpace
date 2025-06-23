@@ -1,7 +1,8 @@
 package com.backend.backend.servico;
 
-import com.backend.backend.modelo.User;
-import com.backend.backend.repositorio.UserRepository;
+import com.backend.backend.model.User;
+import com.backend.backend.repository.UserRepository;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

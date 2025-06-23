@@ -1,4 +1,4 @@
-package com.backend.backend.modelo;
+package com.backend.backend.model;
 
 import lombok.Data;
 

@@ -1,11 +1,12 @@
 package com.backend.backend.servico;
 
-import com.backend.backend.modelo.Category;
-import com.backend.backend.modelo.Product;
-import com.backend.backend.modelo.Store;
-import com.backend.backend.repositorio.CategoryRepository;
-import com.backend.backend.repositorio.ProductRepository;
-import com.backend.backend.repositorio.StoreRepository;
+import com.backend.backend.model.Category;
+import com.backend.backend.model.Product;
+import com.backend.backend.model.Store;
+import com.backend.backend.repository.CategoryRepository;
+import com.backend.backend.repository.ProductRepository;
+import com.backend.backend.repository.StoreRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

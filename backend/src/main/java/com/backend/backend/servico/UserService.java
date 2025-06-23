@@ -1,7 +1,9 @@
 package com.backend.backend.servico;
 
-import com.backend.backend.modelo.User;
-import com.backend.backend.repositorio.UserRepository;
+import com.backend.backend.model.User;
+import com.backend.backend.repository.UserRepository;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,11 @@ public class UserService {
     }
 
     public User salvar(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
         return repo.save(user);
     }
+    
 
     public Optional<User> buscarPorEmail(String email) {
         return repo.findByEmail(email);

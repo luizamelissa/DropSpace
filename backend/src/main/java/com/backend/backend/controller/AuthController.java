@@ -1,7 +1,9 @@
-package com.backend.backend.controle;
+package com.backend.backend.controller;
 
-import com.backend.backend.modelo.User;
-import com.backend.backend.repositorio.UserRepository;
+import com.backend.backend.model.User;
+import com.backend.backend.model.AuthRequest;
+import com.backend.backend.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,13 +24,13 @@ public class AuthController {
     private UserRepository userRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User loginData) {
+    public ResponseEntity<?> login(@RequestBody AuthRequest request) {
         try {
             authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginData.getEmail(), loginData.getPassword())
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
 
-            Optional<User> user = userRepository.findByEmail(loginData.getEmail());
+            Optional<User> user = userRepository.findByEmail(request.getEmail());
             return ResponseEntity.ok(user);
 
         } catch (AuthenticationException e) {

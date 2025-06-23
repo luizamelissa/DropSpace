@@ -1,6 +1,6 @@
-package com.backend.backend.controle;
+package com.backend.backend.controller;
 
-import com.backend.backend.modelo.Category;
+import com.backend.backend.model.Category;
 import com.backend.backend.servico.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
