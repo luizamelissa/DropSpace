@@ -2,10 +2,10 @@ package com.backend.backend.servico;
 
 import com.backend.backend.model.User;
 import com.backend.backend.repository.UserRepository;
-
+import com.backend.backend.exception.ResourceNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -26,5 +26,10 @@ public class UserService {
 
     public List<User> listarTodos() {
         return repository.findAll();
+    }
+
+    public User buscarPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário com ID " + id + " não encontrado"));
     }
 }

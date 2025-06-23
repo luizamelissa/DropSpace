@@ -2,7 +2,7 @@ package com.backend.backend.servico;
 
 import com.backend.backend.model.Supplier;
 import com.backend.backend.repository.SupplierRepository;
-
+import com.backend.backend.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +22,10 @@ public class SupplierService {
 
     public List<Supplier> listar() {
         return repo.findAll();
+    }
+
+    public Supplier buscarPorId(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Fornecedor com ID " + id + " não encontrado"));
     }
 }
