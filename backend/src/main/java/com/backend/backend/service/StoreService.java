@@ -1,4 +1,4 @@
-package com.backend.backend.servico;
+package com.backend.backend.service;
 
 import com.backend.backend.model.Store;
 import com.backend.backend.repository.StoreRepository;

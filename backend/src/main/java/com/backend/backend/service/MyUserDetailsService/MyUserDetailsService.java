@@ -1,4 +1,4 @@
-package com.backend.backend.servico.MyUserDetailsService;
+package com.backend.backend.service.MyUserDetailsService;
 
 import com.backend.backend.model.User;
 import com.backend.backend.repository.UserRepository;

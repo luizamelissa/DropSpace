@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../Service/api';
+import ListaProdutos from './components/ListaProdutos';
 
 function ListaProdutos() {
   const [produtos, setProdutos] = useState([]);

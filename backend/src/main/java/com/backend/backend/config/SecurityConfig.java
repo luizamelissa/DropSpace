@@ -1,6 +1,5 @@
 package com.backend.backend.config;
 
-import com.backend.backend.servico.MyUserDetailsService.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.backend.backend.service.MyUserDetailsService.MyUserDetailsService;
 
 @Configuration
 public class SecurityConfig {

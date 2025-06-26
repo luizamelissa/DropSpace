@@ -1,5 +1,5 @@
 
-package com.backend.backend.servico;
+package com.backend.backend.service;
 
 import com.backend.backend.model.Category;
 import com.backend.backend.repository.CategoryRepository;

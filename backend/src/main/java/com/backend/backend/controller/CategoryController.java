@@ -1,7 +1,8 @@
 package com.backend.backend.controller;
 
 import com.backend.backend.model.Category;
-import com.backend.backend.servico.CategoryService;
+import com.backend.backend.service.CategoryService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
