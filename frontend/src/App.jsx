@@ -51,11 +51,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/produtos" element={<ListaProdutos />} />
+        <Route path="/produtos/novo" element={<CadastroProduto />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   )
 }
 
-export default App
+export default App;

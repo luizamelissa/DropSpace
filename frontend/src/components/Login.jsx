@@ -1,30 +1,49 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api';
+import api from '../Service/api';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     try {
-      const response = await api.post('/auth/login', { username, password });
+      const response = await api.post('/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
+      setError('');
       navigate('/dashboard');
     } catch (error) {
+      if (error.response) {
+        setError(error.response.data.message || 'Login falhou');
+      } else {
+        setError('Erro na conexão com o servidor');
+      }
       console.error(error);
-      alert('Login falhou');
     }
   };
 
   return (
-    <div>
+    <form onSubmit={login}>
       <h1>Login</h1>
-      <input placeholder="Usuário" onChange={e => setUsername(e.target.value)} />
-      <input type="password" placeholder="Senha" onChange={e => setPassword(e.target.value)} />
-      <button onClick={login}>Entrar</button>
-    </div>
+      <input
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit">Entrar</button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </form>
   );
 }
 
